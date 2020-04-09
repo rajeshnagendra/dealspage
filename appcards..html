@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthVest Portal</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+    <style type="text/css">
+        a,
+        .btn-link {
+            color: #009c9c;
+        }
+
+        .listing .btn-link:hover {
+            color: #33691E;
+        }
+
+        .title a {
+            color: #333;
+        }
+
+        .title a:hover {
+            text-decoration: underline;
+        }
+
+        .tooltip {
+            letter-spacing: 0;
+        }
+
+        h1,
+        h2 {
+            font-weight: 300;
+        }
+
+        hr {
+            border-bottom: 1px solid #eee;
+            border-top: none;
+            margin-top: 5px !important;
+            margin-bottom: 5px !important;
+        }
+
+        .listing {
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.45);
+            color: #353535;
+            display: block;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+            margin-bottom: 25px;
+        }
+
+        .listing:hover {
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9);
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .title {
+            display: block;
+            font-size: 16px;
+            line-height: 1.3;
+            overflow: hidden;
+            padding: 10px;
+            font-weight: bold;
+            font-family: 'Cinzel', serif;
+        }
+
+        .details2 {
+            font-size: 12px;
+            text-align: center;
+            display: block;
+            padding: 10px 0;
+            overflow: hidden;
+            /* border-top: 1px solid #eee; */
+            color: #9B9B9B;
+            margin: 0 10px;
+            line-height: 1.2;
+        }
+
+        .price-col {
+            float: left;
+            text-align: left;
+            font-size: 14px;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        .reviews-col {
+            float: right;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        .ellipsis {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 767px) {
+            .details2 {
+                border-top: none;
+                margin: 0;
+                padding-top: 4px;
+            }
+
+            .details2 a {
+                width: 75%;
+                margin: 0 auto 10px;
+            }
+
+            .listing {
+                margin-bottom: 18px;
+            }
+
+            .title {
+                padding: 0;
+            }
+
+            .reviews-col {
+                float: none;
+                text-align: left;
+            }
+
+            .detail-reviews-mobile {
+                display: flex;
+                align-items: center;
+                font-size: 12px;
+            }
+
+            .detail-reviews-mobile,
+            .detail-reviews-mobile:hover {
+                color: #9B9B9B;
+            }
+
+            .detail-reviews-mobile strong {
+                margin: 0 5px 0 10px;
+            }
+        }
+
+        /* Paid Landing Page experiment card styles */
+        .listing-row {
+            height: 60px;
+            margin: 10px 0 0 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .listing-row img {
+            width: 54px;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        a .title {
+            color: #333333;
+            max-height: 54px;
+        }
+
+        a.detail-reviews {
+            color: #9B9B9B;
+        }
+
+        .reviews-col span {
+            color: #ffcc00;
+            font-size: 20px;
+        }
+
+        .top-review-section {
+            border-bottom: 1px solid #eee;
+            padding: 6px;
+            text-align: left;
+            color: #212121;
+            min-height: 96px;
+            display: flex;
+            align-items: center;
+        }
+
+        .top-review-section-wrapper {
+            margin: auto;
+        }
+
+        .top-review-snippet {
+            font-style: italic;
+        }
+
+        .top-review-author {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .var-2-btn-link {
+            margin: 0;
+            padding: 6px 12px;
+        }
+
+        .var-2-btn-link:hover {
+            text-decoration: none;
+        }
+
+        .short-overview {
+            color: #212121;
+            /* height: 98px; */
+            text-align: left;
+            font-size: 14px;
+            line-height: 16px;
+            padding: 10px 0;
+            margin: 0 10px;
+            border-top: 1px solid #eee;
+            display: block;
+        }
+
+        .short-overview-link {
+            font-size: 14px;
+            line-height: 16px;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 767px) {
+            .short-overview {
+                height: unset;
+                max-height: 82px;
+                border-top: none;
+                padding-bottom: 0;
+            }
+
+            .short-overview a:first-of-type {
+                color: #212121;
+            }
+        }
+
+        .detail-reviews {
+            display: flex;
+            justify-content: space-around;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .listing .btn-link:hover {
+            color: #33691E;
+        }
+
+        .sem-hidden {
+            display: none;
+            padding: 0 10px;
+        }
+
+        .btn.btn-primary:not(.btn-text) {
+            background-color: #448AFF !important;
+            color: rgba(255, 255, 255, .84);
+        }
+    </style>
+
+<link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="row" style="margin:10%">
+        <div class="visible-lg">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="listing"><a class="evnt" data-evac="ua_title" data-evca="ua_click_out"
+                            data-evla="sem_serp"
+                            href="/x/boardable-application?serp_num_found=7&amp;serp_num_displayed=7&amp;serp_num_premiums_displayed=7&amp;serp_filtered=0&amp;serp_header_id=48&amp;serp_category_id=464&amp;serp_position=1&amp;route=sem_serp"
+                            rel="nofollow" target="_blank">
+                            <div class="row listing-row">
+                                <!-- <div class="col-md-4"><img class="img-responsive img-fluid-lazy"
+                                        data-src="https://ga1.imgix.net/logo/o/110023-1537372923-0909314?ixlib=rb-1.0.0&amp;ch=Width%2CDPR&amp;auto=format"
+                                        src="https://ga1.imgix.net/logo/o/110023-1537372923-0909314?auto=format&amp;ch=Width%2CDPR&amp;dpr=1.25&amp;ixjsv=2.0.0&amp;ixlib=rb-1.0.0&amp;q=75&amp;w=90">
+                                </div> -->
+                                <div class="col-md-12" style="padding-left: 0"><span
+                                        class="title ellipsis">DEALS.WEALTHVEST.COM</span></div>
+                            </div><span class="short-overview" style="border-top: none">Deal System</span>
+
+                        </a>
+                        <span class="details2">
+                            <hr />
+                            <div class="clearfix"></div>
+                            <div class="price-col">Authentication: </div>
+                            <div class="reviews-col">
+                                <img src="AuthenticationAD.png" alt="Authentication AD" />
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr />
+                            <div class="clearfix"></div>
+                            <a class="button btn btn-block btn-primary evnt" data-evac="ua_main_cta"
+                                data-evca="ua_click_out" data-evla="sem_serp" href="https://deals.wealthvest.com"
+                                rel="nofollow" style="margin-top:10px" target="_blank">Visit Website</a>
+
+                        </span></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+
+
+                    <div class="listing"><a class="evnt" data-evac="ua_title" data-evca="ua_click_out"
+                            data-evla="sem_serp"
+                            href="/x/unily-application?serp_num_found=7&amp;serp_num_displayed=7&amp;serp_num_premiums_displayed=7&amp;serp_filtered=0&amp;serp_header_id=48&amp;serp_category_id=464&amp;serp_position=3&amp;route=sem_serp"
+                            rel="nofollow" target="_blank">
+                            <div class="row listing-row">
+                                <div class="col-md-4"><img class="img-responsive img-fluid-lazy"
+                                        data-src="https://ga0.imgix.net/logo/o/105745-1479715431-9751725?ixlib=rb-1.0.0&amp;ch=Width%2CDPR&amp;auto=format"
+                                        src="https://ga0.imgix.net/logo/o/105745-1479715431-9751725?auto=format&amp;ch=Width%2CDPR&amp;dpr=1.25&amp;ixjsv=2.0.0&amp;ixlib=rb-1.0.0&amp;q=75&amp;w=90">
+                                </div>
+                                <div class="col-md-8" style="padding-left: 0"><span class="title ellipsis">Unily</span>
+                                </div>
+                            </div><span class="short-overview" style="border-top: none">Unily is the award-winning
+                                employee experience platform, at the heart of your digital workplace, that powers better
+                                work for everyone.</span>
+                            <div class="app-details sem-hidden">
+                                <div class="pricing"><span class="sem-label">Starting price</span><span
+                                        class="sem-value">$4995/month</span></div>
+                                <div class="pricing-options"><span class="sem-label">Pricing options</span><span
+                                        class="sem-value">Free Trial, Subscription</span></div>
+                                <div class="pricing-model"><span class="sem-label">Pricing model</span><span
+                                        class="sem-value">Subscription</span></div>
+                                <div class="devices"><span class="sem-label">Devices</span><span class="sem-value"><span
+                                            class="device active"><i aria-hidden="true" class="fa fa-desktop device"
+                                                title="Web"></i></span><span class="device"><i aria-hidden="true"
+                                                class="fa fa-android device" title="Android"></i></span><span
+                                            class="device active"><i aria-hidden="true" class="fa fa-apple device"
+                                                title="iOS (iPhone/iPad)"></i></span></span></div>
+                                <div class="business-sizes"><span class="sem-label">Business size</span><span
+                                        class="sem-value"><span class="business-size" title="Small">S </span><span
+                                            class="business-size active" title="Medium">M </span><span
+                                            class="business-size active" title="Large">L </span></span></div>
+                            </div>
+                        </a><span class="details2"><a class="detail-reviews evnt" data-evac="ua_stars"
+                                data-evca="ua_click_reviews" data-evla="sem_serp"
+                                href="/collaboration-software/a/unily/reviews/" target="_blank">
+                                <div class="reviews-col"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                            class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                            class="fa fa-star-half-o"></i></span></div>
+                                <div class="price-col"><span class="num_reviews" style="display:block">User reviews:
+                                        <strong>9</strong><br>Average rating: <strong>4.33</strong></span></div>
+                            </a>
+                            <div class="clearfix"></div><a class="button btn btn-block btn-primary evnt"
+                                data-evac="ua_main_cta" data-evca="ua_click_out" data-evla="sem_serp"
+                                href="/x/unily-application?serp_num_found=7&amp;serp_num_displayed=7&amp;serp_num_premiums_displayed=7&amp;serp_filtered=0&amp;serp_header_id=48&amp;serp_category_id=464&amp;serp_position=3&amp;route=sem_serp"
+                                rel="nofollow" style="margin-top:10px" target="_blank">Visit Website</a><a
+                                class="btn btn-link var-2-btn-link evnt" data-evac="ua_main_cta"
+                                data-evca="ua_click_details" data-evla="sem_serp"
+                                href="/collaboration-software/a/unily/?opt=true">Learn More</a>
+                        </span></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="listing"><a class="evnt" data-evac="ua_title" data-evca="ua_click_out"
+                            data-evla="sem_serp"
+                            href="/x/bitrix24-application?serp_num_found=7&amp;serp_num_displayed=7&amp;serp_num_premiums_displayed=7&amp;serp_filtered=0&amp;serp_header_id=48&amp;serp_category_id=464&amp;serp_position=4&amp;route=sem_serp"
+                            rel="nofollow" target="_blank">
+                            <div class="row listing-row">
+                                <div class="col-md-4"><img class="img-responsive img-fluid-lazy"
+                                        data-src="https://ga1.imgix.net/logo/o/90602-1440604635-9201205?ixlib=rb-1.0.0&amp;ch=Width%2CDPR&amp;auto=format"
+                                        src="https://ga1.imgix.net/logo/o/90602-1440604635-9201205?auto=format&amp;ch=Width%2CDPR&amp;dpr=1.25&amp;ixjsv=2.0.0&amp;ixlib=rb-1.0.0&amp;q=75&amp;w=90">
+                                </div>
+                                <div class="col-md-8" style="padding-left: 0"><span
+                                        class="title ellipsis">Bitrix24</span></div>
+                            </div><span class="short-overview" style="border-top: none">Bitrix24 is a free cloud &amp;
+                                open source collaboration platform providing CRM, document management, tasking, time
+                                management, &amp; project management ...</span>
+                            <div class="app-details sem-hidden">
+                                <div class="pricing"><span class="sem-label">Starting price</span><span
+                                        class="sem-value">$69/month</span></div>
+                                <div class="pricing-options"><span class="sem-label">Pricing options</span><span
+                                        class="sem-value">Free, Free Trial, One Time License, Subscription</span></div>
+                                <div class="pricing-model"><span class="sem-label">Pricing model</span><span
+                                        class="sem-value">Free, One Time License, Subscription</span></div>
+                                <div class="devices"><span class="sem-label">Devices</span><span class="sem-value"><span
+                                            class="device active"><i aria-hidden="true" class="fa fa-desktop device"
+                                                title="Web"></i></span><span class="device active"><i aria-hidden="true"
+                                                class="fa fa-android device" title="Android"></i></span><span
+                                            class="device active"><i aria-hidden="true" class="fa fa-apple device"
+                                                title="iOS (iPhone/iPad)"></i></span></span></div>
+                                <div class="business-sizes"><span class="sem-label">Business size</span><span
+                                        class="sem-value"><span class="business-size active" title="Small">S
+                                        </span><span class="business-size active" title="Medium">M </span><span
+                                            class="business-size active" title="Large">L </span></span></div>
+                            </div>
+                        </a><span class="details2"><a class="detail-reviews evnt" data-evac="ua_stars"
+                                data-evca="ua_click_reviews" data-evla="sem_serp"
+                                href="/collaboration-software/a/bitrix24/reviews/" target="_blank">
+                                <div class="reviews-col"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                            class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                            class="fa fa-star-o"></i></span></div>
+                                <div class="price-col"><span class="num_reviews" style="display:block">User reviews:
+                                        <strong>409</strong><br>Average rating: <strong>4.03</strong></span></div>
+                            </a>
+                            <div class="clearfix"></div><a class="button btn btn-block btn-primary evnt"
+                                data-evac="ua_main_cta" data-evca="ua_click_out" data-evla="sem_serp"
+                                href="/x/bitrix24-application?serp_num_found=7&amp;serp_num_displayed=7&amp;serp_num_premiums_displayed=7&amp;serp_filtered=0&amp;serp_header_id=48&amp;serp_category_id=464&amp;serp_position=4&amp;route=sem_serp"
+                                rel="nofollow" style="margin-top:10px" target="_blank">Visit Website</a><a
+                                class="btn btn-link var-2-btn-link evnt" data-evac="ua_main_cta"
+                                data-evca="ua_click_details" data-evla="sem_serp"
+                                href="/collaboration-software/a/bitrix24/?opt=true">Learn More</a>
+                        </span></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="listing"><a class="evnt" data-evac="ua_title" data-evca="ua_click_out"
+                            data-evla="sem_serp"
+                            href="/x/onboard-application?serp_num_found=7&amp;serp_num_displayed=7&amp;serp_num_premiums_displayed=7&amp;serp_filtered=0&amp;serp_header_id=48&amp;serp_category_id=464&amp;serp_position=5&amp;route=sem_serp"
+                            rel="nofollow" target="_blank">
+                            <div class="row listing-row">
+                                <div class="col-md-4"><img class="img-responsive img-fluid-lazy"
+                                        data-src="https://ga1.imgix.net/logo/o/105973-1566319977-1947525?ixlib=rb-1.0.0&amp;ch=Width%2CDPR&amp;auto=format"
+                                        src="https://ga1.imgix.net/logo/o/105973-1566319977-1947525?auto=format&amp;ch=Width%2CDPR&amp;dpr=1.25&amp;ixjsv=2.0.0&amp;ixlib=rb-1.0.0&amp;q=75&amp;w=90">
+                                </div>
+                                <div class="col-md-8" style="padding-left: 0"><span
+                                        class="title ellipsis">OnBoard</span></div>
+                            </div><span class="short-overview" style="border-top: none">OnBoard is a leading virtual
+                                board &amp; leadership meeting management software that's comprehensive &amp; secure. It
+                                provides your team a complete suite ...</span>
+                            <div class="app-details sem-hidden">
+                                <div class="pricing-options"><span class="sem-label">Pricing options</span><span
+                                        class="sem-value">Free Trial, Subscription</span></div>
+                                <div class="pricing-model"><span class="sem-label">Pricing model</span><span
+                                        class="sem-value">Subscription</span></div>
+                                <div class="devices"><span class="sem-label">Devices</span><span class="sem-value"><span
+                                            class="device active"><i aria-hidden="true" class="fa fa-desktop device"
+                                                title="Web"></i></span><span class="device active"><i aria-hidden="true"
+                                                class="fa fa-android device" title="Android"></i></span><span
+                                            class="device active"><i aria-hidden="true" class="fa fa-apple device"
+                                                title="iOS (iPhone/iPad)"></i></span></span></div>
+                                <div class="business-sizes"><span class="sem-label">Business size</span><span
+                                        class="sem-value"><span class="business-size active" title="Small">S
+                                        </span><span class="business-size active" title="Medium">M </span><span
+                                            class="business-size active" title="Large">L </span></span></div>
+                            </div>
+                        </a><span class="details2"><a class="detail-reviews evnt" data-evac="ua_stars"
+                                data-evca="ua_click_reviews" data-evla="sem_serp"
+                                href="/collaboration-software/a/onboard/reviews/" target="_blank">
+                                <div class="reviews-col"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                            class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                            class="fa fa-star-half-o"></i></span></div>
+                                <div class="price-col"><span class="num_reviews" style="display:block">User reviews:
+                                        <strong>360</strong><br>Average rating: <strong>4.69</strong></span></div>
+                            </a>
+                            <div class="clearfix"></div><a class="button btn btn-block btn-primary evnt"
+                                data-evac="ua_main_cta" data-evca="ua_click_out" data-evla="sem_serp"
+                                href="/x/onboard-application?serp_num_found=7&amp;serp_num_displayed=7&amp;serp_num_premiums_displayed=7&amp;serp_filtered=0&amp;serp_header_id=48&amp;serp_category_id=464&amp;serp_position=5&amp;route=sem_serp"
+                                rel="nofollow" style="margin-top:10px" target="_blank">Visit Website</a><a
+                                class="btn btn-link var-2-btn-link evnt" data-evac="ua_main_cta"
+                                data-evca="ua_click_details" data-evla="sem_serp"
+                                href="/collaboration-software/a/onboard/?opt=true">Learn More</a>
+                        </span></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+
+                    <div class="listing"><a class="evnt" data-evac="ua_title" data-evca="ua_click_out"
+                            data-evla="sem_serp"
+                            href="/x/malcolm-application?serp_num_found=7&amp;serp_num_displayed=7&amp;serp_num_premiums_displayed=7&amp;serp_filtered=0&amp;serp_header_id=48&amp;serp_category_id=464&amp;serp_position=7&amp;route=sem_serp"
+                            rel="nofollow" target="_blank">
+                            <div class="row listing-row">
+                                <div class="col-md-4"><img class="img-responsive img-fluid-lazy"
+                                        data-src="https://ga0.imgix.net/logo/o/114503-1543332756-7072866?ixlib=rb-1.0.0&amp;ch=Width%2CDPR&amp;auto=format"
+                                        src="https://ga0.imgix.net/logo/o/114503-1543332756-7072866?auto=format&amp;ch=Width%2CDPR&amp;dpr=1.25&amp;ixjsv=2.0.0&amp;ixlib=rb-1.0.0&amp;q=75&amp;w=90">
+                                </div>
+                                <div class="col-md-8" style="padding-left: 0"><span
+                                        class="title ellipsis">Malcolm!</span></div>
+                            </div><span class="short-overview" style="border-top: none">Malcolm! is a set of easy to use
+                                tools that lets your users service, interact &amp; engage with you online.</span>
+                            <div class="app-details sem-hidden">
+                                <div class="pricing"><span class="sem-label">Starting price</span><span
+                                        class="sem-value">$30/month</span></div>
+                                <div class="pricing-options"><span class="sem-label">Pricing options</span><span
+                                        class="sem-value">Free Trial, Subscription</span></div>
+                                <div class="pricing-model"><span class="sem-label">Pricing model</span><span
+                                        class="sem-value">Subscription</span></div>
+                                <div class="devices"><span class="sem-label">Devices</span><span class="sem-value"><span
+                                            class="device active"><i aria-hidden="true" class="fa fa-desktop device"
+                                                title="Web"></i></span><span class="device"><i aria-hidden="true"
+                                                class="fa fa-android device" title="Android"></i></span><span
+                                            class="device"><i aria-hidden="true" class="fa fa-apple device"
+                                                title="iOS (iPhone/iPad)"></i></span></span></div>
+                                <div class="business-sizes"><span class="sem-label">Business size</span><span
+                                        class="sem-value"><span class="business-size active" title="Small">S
+                                        </span><span class="business-size active" title="Medium">M </span><span
+                                            class="business-size active" title="Large">L </span></span></div>
+                            </div>
+                        </a><span class="details2"><a class="detail-reviews evnt" data-evac="ua_stars"
+                                data-evca="ua_click_reviews" data-evla="sem_serp"
+                                href="/customer-service-support-software/a/malcolm/reviews/" target="_blank">
+                                <div class="reviews-col"><span><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                            class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                            class="fa fa-star"></i></span></div>
+                                <div class="price-col"><span class="num_reviews" style="display:block">User reviews:
+                                        <strong>9</strong><br>Average rating: <strong>5.0</strong></span></div>
+                            </a>
+                            <div class="clearfix"></div><a class="button btn btn-block btn-primary evnt"
+                                data-evac="ua_main_cta" data-evca="ua_click_out" data-evla="sem_serp"
+                                href="/x/malcolm-application?serp_num_found=7&amp;serp_num_displayed=7&amp;serp_num_premiums_displayed=7&amp;serp_filtered=0&amp;serp_header_id=48&amp;serp_category_id=464&amp;serp_position=7&amp;route=sem_serp"
+                                rel="nofollow" style="margin-top:10px" target="_blank">Visit Website</a><a
+                                class="btn btn-link var-2-btn-link evnt" data-evac="ua_main_cta"
+                                data-evca="ua_click_details" data-evla="sem_serp"
+                                href="/customer-service-support-software/a/malcolm/?opt=true">Learn More</a>
+                        </span></div>
+                </div>
+                <div class="col-lg-12"></div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
